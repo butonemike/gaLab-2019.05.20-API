@@ -13,16 +13,13 @@ router.get('/', function (req, res, next) {
 
 router.post('/', function (req, res, next) {
     request(catURL, function (err, response, body) {
-        var categories = JSON.parse(body)
-        var category = req.body.category
-        var url = rootURL
-        if (category) {
-            url = rootURL + '?category=' + category;
-        }
+        var categories = JSON.parse(body);
+        var category = req.body.category;
+        var url = category ? rootURL + '?category=' + category : rootURL;
 
         request(url, function (err, response, body) {
             var joke = JSON.parse(body);
-            res.render('index', { joke: joke.value, categories })
+            res.render('index', { joke: joke.value, categories });
         });
     });
 });
