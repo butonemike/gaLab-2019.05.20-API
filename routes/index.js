@@ -12,24 +12,10 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/', function (req, res, next) {
-    // console.log('REQ BELOW')
-    // console.log(req)
-    // console.log('REQ.BODY BELOW')
-    // console.log(req.body)
-    // console.log('REQ.BODY.CATEGORY BELOW')
-    // console.log(req.body.category)
     request(catURL, function (err, response, body) {
         var categories = JSON.parse(body)
-        // console.log('BODY BELOW')
-        // console.log(body)
-        // console.log('CATEGORIES BELOW')
-        // console.log(categories)
         var category = req.body.category
-        console.log('CATEGORY')
-        console.log(category)
         var url = rootURL
-        console.log('URL')
-        console.log(url)
         if (category) {
             url = rootURL + '?category=' + category;
         }
